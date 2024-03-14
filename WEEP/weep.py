@@ -14,8 +14,8 @@ def weep_batch(df:pd.DataFrame):
     df['slide_name'] <- slide names ,
     df['tile_filename'] <- tile names,
     df['pred_scores'] <- tile-level prediction scores e.g., class probabilities,
-    classification threshold for that slide <- df['threshold']
-    :return: df with selected tiles for each WSI and the tile-level prediction score
+    df['threshold'] <- classification threshold for that slide 
+    :return: df with selected tiles for each WSI and the tile-level prediction scores
     '''
     # list of df containing the selected tiles for each WSI
     dfs = []
