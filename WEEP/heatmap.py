@@ -10,7 +10,7 @@ import openslide
 
 def view_wsi(path_to_slide, level):
     '''
-    function to a WSI at the given resolution level using openslide
+    function to view a WSI at the given resolution level using openslide
     :param path_slide: string containing the path to the WSI
     :param level: integer value to define the resolution level for extracting the wsi from the macro image
     :return: WSI at the given resolution
