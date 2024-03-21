@@ -8,12 +8,11 @@ import pickle
 import matplotlib
 import openslide
 
-def view_wsi(path_to_slide, level):
+def view_wsi(path_to_slide):
     '''
-    function to view a WSI at the given resolution level using openslide
+    function to a WSI at the given resolution level using openslide
     :param path_slide: string containing the path to the WSI
-    :param level: integer value to define the resolution level for extracting the wsi from the macro image
-    :return: WSI at the given resolution
+    :return: WSI at the lowest resolution
     '''
     slide = openslide.OpenSlide(path_to_slide)
     level = len(slide.level_dimensions)
@@ -33,11 +32,35 @@ def plot_cancer_mask(path_to_mask, alpha):
     plt.imshow(cancer_mask, cmap=matplotlib.colors.ListedColormap(['w', 'c']), alpha=alpha)
     plt.axis('off')
 
-def heatmap(df):
+def heatmap(df, path_to_mask, stride, scaling_mask, pixelscaling, alpha):
     '''
     plotting the heatmap of the tile-level prediction scores for that wsi
     :param df:
     :return:
     '''
+    print(len(df))
+    # path_to_mask = os.path.join(path_to_mask, '%s_AutoMask.pkl' % df_selected['slide_name'].iloc[0])
+    tis_mask = pickle.load(
+        open(path_to_mask, "rb"))
+    h, w = tis_mask.shape
+    # print(h,w)
+    outputimage_probs = np.zeros(h * w).reshape(h, w)
     idx_batch = df.index
-    for i in idx_batch:
+    for idx in idx_batch:
+        rowi = np.floor((df.loc[idx, 'cor_x1']) / scaling_mask).astype('uint32')
+        coli = np.floor((df.loc[idx, 'cor_y1']) / scaling_mask).astype('uint32')
+        # print(rowi, coli)
+        prediction = df.loc[idx, 'pred_scores']
+        outputimage_probs[rowi:rowi + int(np.floor(stride / scaling_mask * pixelscaling)) + 1,
+                          coli:coli + int(np.floor(stride / scaling_mask * pixelscaling)) + 1] = prediction
+        # print(prediction, outputimage_probs)
+        prob_img = outputimage_probs.copy()
+    # print(prob_img)
+
+    # plotting the binary masks
+    cmap = matplotlib.colors.ListedColormap(['w', 'b'])
+    bounds = [0., 0.00000000005, 1.]
+    norm = matplotlib.colors.BoundaryNorm(bounds, cmap.N)
+    plt.imshow(prob_img, cmap=cmap, norm=norm, alpha = alpha)
+    # plt.colorbar()
+    plt.axis('off')
