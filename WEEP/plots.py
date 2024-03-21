@@ -45,7 +45,7 @@ def heatmap(df, path_to_mask, stride, scaling_mask, pixelscaling, alpha):
     :param alpha: transparency factor for the matplotlib plot (value between 0.0 and 1.0)
     :return:
     '''
-    print(len(df))
+    # print(len(df))
     # path_to_mask = os.path.join(path_to_mask, '%s_AutoMask.pkl' % df_selected['slide_name'].iloc[0])
     tis_mask = pickle.load(
         open(path_to_mask, "rb"))
