@@ -1,7 +1,7 @@
 # WEEP: Wsi rEgion sElection aPproach
 
 This repo includes the implementation steps of the methodology WEEP as described in the paper: WEEP: A method for spatial interpretation of weakly supervised CNN models in computational pathology. 
-It includes the example of the implementation of the WEEP on the tile-level prediction scores for breast cancer histological grade 1 vs 3 classification. The 75th percentile of the tile-level prediction scores was used as the tile-to-slide aggregation function as it was used in the study. Different summary statistics-based aggregation like mean, median can be easily implemented by modifying the `weep_per_slide` function in `weep.py`
+It includes the example of the implementation of the WEEP on the tile-level prediction scores for breast cancer histological grade 1 vs 3 classification. The 75th percentile of the tile-level prediction scores was used as the tile-to-slide aggregation function. Different summary statistics-based aggregation like mean, median can be easily implemented by modifying the `weep_per_slide` function in `weep.py`
 
 ### Scripts and Methods
 
