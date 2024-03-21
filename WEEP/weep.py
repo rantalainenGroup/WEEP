@@ -15,7 +15,7 @@ def weep_batch(df: pd.DataFrame, threshold):
     df['slide_name'] <- string: slide names ,
     df['tile_filename'] <- string of tile names,
     df['pred_scores'] <- float: tile-level prediction scores e.g., class probabilities,
-    df['threshold'] <- float: classification threshold for that slide
+    :param threshold: float value: the decision threshold for the binary classification
     :return: df with selected tiles for each WSI and the tile-level prediction score
     '''
     #     if not (isinstance(df.dtypes['slide_name'], str) and isinstance(df.dtypes['tile_filename'], str)):
@@ -59,7 +59,7 @@ def weep_batch(df: pd.DataFrame, threshold):
 def weep_per_slide(df: pd.DataFrame, threshold):
     '''
     Applying weep to a slide
-    :param df: data frame including the columns tile-level prediction scores,
+    :param df: data frame mainly including the columns tile-level prediction scores,
     and tile file names i.e. df['tile_filename']
     :param threshold: classification threshold for the binary classification
     :return: list of selected tiles through weep and the list of prediction scores
@@ -98,7 +98,7 @@ def weep_plot(df:pd.DataFrame, threshold):
     df['tile_filename'] <- string: tile names,
     df['pred_scores'] <- tile-level prediction scores e.g., class probabilities,
     df['threshold'] <- float: classification threshold (same for all the slides)
-    :return: weep plot i.e. line plot to observe the selection of tiles using WEEP
+    :return: weep plot i.e. line plot with number of lines = number of wsis
     '''
     # retrieving the selected tiles using WEEP for the wsis in given df
     df_selected = weep_batch(df, threshold = threshold)
