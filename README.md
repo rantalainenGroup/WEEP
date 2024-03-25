@@ -12,7 +12,7 @@ The example of the application of WEEP have been demonstrated using three WSIs (
 
 ### Software
 
-The key software packages include `pandas v.1.5.2`, `matplotlib=3.6.2`, `numpy v.1.23.4` and `python=3.10.8`
+The key software packages include `pandas v.1.5.2`, `matplotlib v.3.6.2`, `numpy v.1.23.4` and `python v.3.10.8`
 
 
 
