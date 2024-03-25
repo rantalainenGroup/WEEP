@@ -1,6 +1,8 @@
 # WEEP: Wsi rEgion sElection aPproach
 
-This repo includes the implementation steps of the methodology WEEP.  It includes the example of the implementation of the WEEP on the tile-level prediction scores for breast cancer histological grade 1 vs 3 classification.    The 75th percentile of the tile-level prediction scores was used as the tile-to-slide aggregation function as it was used in the study. Different summary statistics-based aggregation like mean, median can be easily implemented by modifying the `weep_per_slide` function in `weep.py`
+This repo includes the implementation steps of the methodology WEEP.  The pre-print is available at: https://arxiv.org/abs/2403.15238. 
+
+It includes the example of the implementation of the WEEP on the tile-level prediction scores for breast cancer histological grade 1 vs 3 classification.    The 75th percentile of the tile-level prediction scores was used as the tile-to-slide aggregation function as it was used in the study. Different summary statistics-based aggregation like mean, median can be easily implemented by modifying the `weep_per_slide` function in `weep.py`
 
 ### Scripts and Methods
 
@@ -12,7 +14,7 @@ The example of the application of WEEP have been demonstrated using three WSIs (
 
 ### Software
 
-The key software packages include `pandas v.1.5.2`, `matplotlib v.3.6.2`, `numpy v.1.23.4` and `python v.3.10.8`
+The key software packages include `pandas v.1.5.2`, `matplotlib=3.6.2`, `numpy v.1.23.4` and `python=3.10.8`
 
 
 
